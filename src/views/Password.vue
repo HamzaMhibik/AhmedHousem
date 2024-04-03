@@ -11,38 +11,6 @@
         </center>
     </div>
 </template>
-
-<script>
-    import { getAuth, sendPasswordResetEmail } from 'firebase/auth'; // Import des fonctionnalités Firebase version 9
-
-    // Initialisez l'objet auth Firebase
-    const auth = getAuth();
-
-    export default {
-        data() {
-            return {
-                email: '', // Liaison de la valeur de l'entrée à cette propriété de données
-                errorMessage: '',
-                successMessage: ''
-            }
-        },
-        methods: {
-            async resetPassword() {
-                try {
-                    await sendPasswordResetEmail(auth, this.email); // Utilisation de la fonction sendPasswordResetEmail de Firebase
-                    // Notifiez l'utilisateur que l'e-mail a été envoyé
-                    alert('Un email de réinitialisation de mot de passe a été envoyé à votre adresse.');
-                } catch (error) {
-                    // Gérer les erreurs
-                    console.error('Erreur lors de l\'envoi de l\'email de réinitialisation de mot de passe:', error.message);
-                    alert('Erreur lors de l\'envoi de l\'email de réinitialisation de mot de passe. Veuillez réessayer plus tard.');
-                }
-            },
-        }
-    }
-</script>
-
-
 <style scoped>
 .forgot-password {
     margin-top: 50px;
@@ -93,3 +61,35 @@
     color: green;
 }
 </style>
+
+<script>
+    import { getAuth, sendPasswordResetEmail } from 'firebase/auth'; // Import des fonctionnalités Firebase version 9
+
+    // Initialisez l'objet auth Firebase
+    const auth = getAuth();
+
+    export default {
+        data() {
+            return {
+                email: '', // Liaison de la valeur de l'entrée à cette propriété de données
+                errorMessage: '',
+                successMessage: ''
+            }
+        },
+        methods: {
+            async resetPassword() {
+                try {
+                    await sendPasswordResetEmail(auth, this.email); // Utilisation de la fonction sendPasswordResetEmail de Firebase
+                    // Notifiez l'utilisateur que l'e-mail a été envoyé
+                    alert('Un email de réinitialisation de mot de passe a été envoyé à votre adresse.');
+                } catch (error) {
+                    // Gérer les erreurs
+                    console.error('Erreur lors de l\'envoi de l\'email de réinitialisation de mot de passe:', error.message);
+                    alert('Erreur lors de l\'envoi de l\'email de réinitialisation de mot de passe. Veuillez réessayer plus tard.');
+                }
+            },
+        }
+    }
+</script>
+
+

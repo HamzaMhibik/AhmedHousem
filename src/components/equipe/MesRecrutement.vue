@@ -51,7 +51,74 @@
     </div>
   </div>
 </template>
+<style scoped>
+  .demandes-container {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
 
+  .empty-message {
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+  }
+
+  .demande-card {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .demande-info p {
+    margin: 5px 0;
+  }
+
+  .joueurs-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .joueurs-table th,
+  .joueurs-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .no-applicants {
+    margin-top: 10px;
+    color: #888;
+  }
+
+  .delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .delete-button:hover {
+    background-color: #d32f2f;
+  }
+  img{
+    max-width: 100px;
+  }
+  button{
+    background-color: #3682f4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+</style>
 <script>
 import { db,auth } from "../../firebase/firebase";
 import { collection, getDocs, deleteDoc, doc, where, query,updateDoc,arrayRemove } from 'firebase/firestore';
@@ -136,71 +203,3 @@ export default {
 }
 </script>
 
-<style scoped>
-  .demandes-container {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-  }
-
-  .empty-message {
-    padding: 10px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-  }
-
-  .demande-card {
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 15px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .demande-info p {
-    margin: 5px 0;
-  }
-
-  .joueurs-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .joueurs-table th,
-  .joueurs-table td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .no-applicants {
-    margin-top: 10px;
-    color: #888;
-  }
-
-  .delete-button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-
-  .delete-button:hover {
-    background-color: #d32f2f;
-  }
-  img{
-    max-width: 100px;
-  }
-  button{
-    background-color: #3682f4;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-</style>

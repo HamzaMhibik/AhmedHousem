@@ -50,6 +50,87 @@
     </div>
   </div>
 </template>
+<style scoped>
+  .title {
+    font-size: 2rem;
+  }
+  
+  * {
+    font-size: 1.25rem;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  td {
+    padding: 10px;
+  }
+  
+  .tdd {
+    border-left: solid 1px black;
+  }
+  
+  .logo {
+    max-width: 200px;
+    border-radius: 50%;
+  }
+  
+  .details-container {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .stade {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+  }
+  
+  .participer-btn {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .nbmax {
+    color: red;
+  }
+  
+  .equipes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .equipe-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .delete-btn:hover {
+    background-color: darkred;
+  }
+  </style>
     <script>
     import { db, storage,auth } from "../../firebase/firebase";
     import { doc, getDoc, updateDoc } from 'firebase/firestore';
@@ -160,84 +241,4 @@
       }
     }
   </script>
-  <style scoped>
-  .title {
-    font-size: 2rem;
-  }
   
-  * {
-    font-size: 1.25rem;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  td {
-    padding: 10px;
-  }
-  
-  .tdd {
-    border-left: solid 1px black;
-  }
-  
-  .logo {
-    max-width: 200px;
-    border-radius: 50%;
-  }
-  
-  .details-container {
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    padding: 20px;
-  }
-  
-  .stade {
-    cursor: pointer;
-    color: blue;
-    text-decoration: underline;
-  }
-  
-  .participer-btn {
-    background-color: green;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .nbmax {
-    color: red;
-  }
-  
-  .equipes-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 20px;
-    margin-top: 20px;
-  }
-  
-  .equipe-card {
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .delete-btn {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .delete-btn:hover {
-    background-color: darkred;
-  }
-  </style>

@@ -57,112 +57,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import { db,storage,auth } from "../../firebase/firebase";
-import { collection, getDocs } from 'firebase/firestore';
-import { ref, listAll, getDownloadURL } from "firebase/storage";
-
-export default {
-  name: "Stades",
-  data() {
-    return {
-      noteMinimale:'',
-      stades: [],
-      storedType: '',
-      selectedVille: '', // Définir la valeur par défaut à une chaîne vide
-      selectedPrix: '', // Définir la valeur par défaut à une chaîne vide
-      villes: ['zarzis', 'mednine', 'jerbe', 'gabes', 'sfax'], // Liste des villes disponibles
-      prixOptions: [
-        { label: 'Moins de 50 DT', value: '<50' },
-        { label: '50 - 100 DT', value: '50-100' },
-        { label: 'Plus de 100 DT', value: '>100' }
-      ], // Options de prix de réservation
-      intervalleNote: '',
-    };
-  },
-  computed: {
-        userDetails() {
-        return this.$store.state.userDetails;
-        },
-    },
-  async mounted() {
-    await this.fetchStades();
-    await this.fetchImagesForStades();
-    await this.$store.dispatch('fetchUserDetails');
-    this.storedType = this.userDetails?.photoURL ?? '';
-    
-  },
-  methods: {
-    async fetchStades() {
-      const colRef = collection(db, 'proprietaire');
-      const querySnapshot = await getDocs(colRef);
-      console.log(querySnapshot)
-      querySnapshot.forEach((doc) => {
-        this.stades.push(doc.data());
-      });
-      const villesAvecStades = this.stades.map(stade => stade.ville);
-      this.villes = [...new Set(villesAvecStades)];
-    },
-
-    async fetchImagesForStades() {
-      for (let i = 0; i < this.stades.length; i++) {
-        const stade = this.stades[i];
-        const imagesRef = ref(storage, `Stades/${stade.stadiumName}/`);
-        await listAll(imagesRef).then(async (res) => {
-          if (res.items.length > 0) {
-            const firstImage = res.items[0]; // Récupère uniquement la première image
-            const imageUrl = await getDownloadURL(firstImage);
-            this.stades[i].images = [{ url: imageUrl }]; // Ajoute seulement la première image au tableau d'images
-          }
-        }).catch((error) => {
-          console.error('Error getting uploaded images:', error);
-        });
-      }
-    },
-
-    reserver(stade) {
-      this.$router.push({ path: 'reserver', query: { stade: stade.stadiumName } });
-    },
-    async filterStades() {
-  // Réinitialiser les stades pour afficher tous les stades
-  this.stades = [];
-
-  // Refetch les stades selon la ville sélectionnée
-  const colRef = collection(db, 'proprietaire');
-  const querySnapshot = await getDocs(colRef);
-  querySnapshot.forEach(async (doc) => {
-    const stade = doc.data();
-    const noteStade = stade.sovote / stade.nbvote;
-
-    if ((!this.selectedVille || stade.ville === this.selectedVille) &&
-        (!this.selectedPrix || this.checkPrice(stade.reservationPrice)) &&
-        (this.noteMinimale === '' || noteStade >= parseInt(this.noteMinimale))) {
-      // Ajouter le stade à la liste des stades
-      this.stades.push(stade);
-    }
-  });
-
-  // Une fois que les stades sont filtrés, charger les images pour ces stades
-  await this.fetchImagesForStades();
-},
-    checkPrice(reservationPrice) {
-      if (this.selectedPrix === '<50') {
-        return reservationPrice < 50;
-      } else if (this.selectedPrix === '50-100') {
-        return reservationPrice >= 50 && reservationPrice <= 100;
-      } else if (this.selectedPrix === '>100') {
-        return reservationPrice > 100;
-      }
-      return true; // Si aucune option de prix n'est sélectionnée, retourne true
-    }
-  
-
-  }
-}
-</script>
-
-
 <style scoped>
   
 
@@ -275,3 +169,109 @@ export default {
   margin:100px
 }
 </style>
+
+<script>
+import { db,storage,auth } from "../../firebase/firebase";
+import { collection, getDocs } from 'firebase/firestore';
+import { ref, listAll, getDownloadURL } from "firebase/storage";
+
+export default {
+  name: "Stades",
+  data() {
+    return {
+      noteMinimale:'',
+      stades: [],
+      storedType: '',
+      selectedVille: '', // Définir la valeur par défaut à une chaîne vide
+      selectedPrix: '', // Définir la valeur par défaut à une chaîne vide
+      villes: ['zarzis', 'mednine', 'jerbe', 'gabes', 'sfax'], // Liste des villes disponibles
+      prixOptions: [
+        { label: 'Moins de 50 DT', value: '<50' },
+        { label: '50 - 100 DT', value: '50-100' },
+        { label: 'Plus de 100 DT', value: '>100' }
+      ], // Options de prix de réservation
+      intervalleNote: '',
+    };
+  },
+  computed: {
+        userDetails() {
+        return this.$store.state.userDetails;
+        },
+    },
+  async mounted() {
+    await this.fetchStades();
+    await this.fetchImagesForStades();
+    await this.$store.dispatch('fetchUserDetails');
+    this.storedType = this.userDetails?.photoURL ?? '';
+    
+  },
+  methods: {
+    async fetchStades() {
+      const colRef = collection(db, 'proprietaire');
+      const querySnapshot = await getDocs(colRef);
+      console.log(querySnapshot)
+      querySnapshot.forEach((doc) => {
+        this.stades.push(doc.data());
+      });
+      const villesAvecStades = this.stades.map(stade => stade.ville);
+      this.villes = [...new Set(villesAvecStades)];
+    },
+
+    async fetchImagesForStades() {
+      for (let i = 0; i < this.stades.length; i++) {
+        const stade = this.stades[i];
+        const imagesRef = ref(storage, `Stades/${stade.stadiumName}/`);
+        await listAll(imagesRef).then(async (res) => {
+          if (res.items.length > 0) {
+            const firstImage = res.items[0]; // Récupère uniquement la première image
+            const imageUrl = await getDownloadURL(firstImage);
+            this.stades[i].images = [{ url: imageUrl }]; // Ajoute seulement la première image au tableau d'images
+          }
+        }).catch((error) => {
+          console.error('Error getting uploaded images:', error);
+        });
+      }
+    },
+
+    reserver(stade) {
+      this.$router.push({ path: 'reserver', query: { stade: stade.stadiumName } });
+    },
+    async filterStades() {
+  // Réinitialiser les stades pour afficher tous les stades
+  this.stades = [];
+
+  // Refetch les stades selon la ville sélectionnée
+  const colRef = collection(db, 'proprietaire');
+  const querySnapshot = await getDocs(colRef);
+  querySnapshot.forEach(async (doc) => {
+    const stade = doc.data();
+    const noteStade = stade.sovote / stade.nbvote;
+
+    if ((!this.selectedVille || stade.ville === this.selectedVille) &&
+        (!this.selectedPrix || this.checkPrice(stade.reservationPrice)) &&
+        (this.noteMinimale === '' || noteStade >= parseInt(this.noteMinimale))) {
+      // Ajouter le stade à la liste des stades
+      this.stades.push(stade);
+    }
+  });
+
+  // Une fois que les stades sont filtrés, charger les images pour ces stades
+  await this.fetchImagesForStades();
+},
+    checkPrice(reservationPrice) {
+      if (this.selectedPrix === '<50') {
+        return reservationPrice < 50;
+      } else if (this.selectedPrix === '50-100') {
+        return reservationPrice >= 50 && reservationPrice <= 100;
+      } else if (this.selectedPrix === '>100') {
+        return reservationPrice > 100;
+      }
+      return true; // Si aucune option de prix n'est sélectionnée, retourne true
+    }
+  
+
+  }
+}
+</script>
+
+

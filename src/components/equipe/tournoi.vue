@@ -45,7 +45,77 @@
     </div>
   </div>
 </template>
+<style scoped>
+h2{
+  margin-left: 780px;
+}
+.filter-nav {
+  border: 2px solid black;
+  margin-top: 109px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px; /* Largeur du filtre */
+  height: 100%; /* Hauteur pour remplir l'écran */
+  background-color: #bdb2b2; /* Couleur de fond */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre */
+  padding: 20px; /* Espacement intérieur */
+  z-index: 100; /* Assurez-vous qu'il est au-dessus du contenu */
+}
+  .tournois-container {
+    margin-left: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
+  .tournoi {
+    border: 2px solid red;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: flex-start;
+    width: calc(50% - 25px); /* 50% width with margin */
+  }
+
+  .images-container {
+    margin-right: 20px;
+  }
+
+  .img {
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+  }
+
+  .tournoi-details {
+    flex-grow: 1;
+    border-left: solid 1px;
+    padding-left: 20px;
+  }
+  select{
+    max-width: 200px;
+  }
+  button{
+  background-color: #ff6347; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  padding: 8px 16px; /* Espacement intérieur */
+  border: none; /* Suppression de la bordure */
+  border-radius: 4px; /* Arrondi des coins */
+  cursor: pointer; /* Curseur au survol */
+  transition: background-color 0.3s; /* Transition en cas de changement de couleur de fond */
+  }
+  button:hover{
+    background-color: #d14836; /* Changement de couleur de fond au survol */
+  }
+  .stade{
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+  font-size: 1.25rem;
+  }
+</style>
 <script>
 import { db,storage } from "../../firebase/firebase";
 import { collection, getDocs } from 'firebase/firestore';
@@ -144,74 +214,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-h2{
-  margin-left: 780px;
-}
-.filter-nav {
-  border: 2px solid black;
-  margin-top: 109px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200px; /* Largeur du filtre */
-  height: 100%; /* Hauteur pour remplir l'écran */
-  background-color: #bdb2b2; /* Couleur de fond */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre */
-  padding: 20px; /* Espacement intérieur */
-  z-index: 100; /* Assurez-vous qu'il est au-dessus du contenu */
-}
-  .tournois-container {
-    margin-left: 250px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .tournoi {
-    border: 2px solid red;
-    margin-bottom: 50px;
-    display: flex;
-    align-items: flex-start;
-    width: calc(50% - 25px); /* 50% width with margin */
-  }
-
-  .images-container {
-    margin-right: 20px;
-  }
-
-  .img {
-    width: 200px;
-    height: 200px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    margin-left: 20px;
-  }
-
-  .tournoi-details {
-    flex-grow: 1;
-    border-left: solid 1px;
-    padding-left: 20px;
-  }
-  select{
-    max-width: 200px;
-  }
-  button{
-  background-color: #ff6347; /* Couleur de fond */
-  color: white; /* Couleur du texte */
-  padding: 8px 16px; /* Espacement intérieur */
-  border: none; /* Suppression de la bordure */
-  border-radius: 4px; /* Arrondi des coins */
-  cursor: pointer; /* Curseur au survol */
-  transition: background-color 0.3s; /* Transition en cas de changement de couleur de fond */
-  }
-  button:hover{
-    background-color: #d14836; /* Changement de couleur de fond au survol */
-  }
-  .stade{
-  cursor: pointer;
-  color: blue;
-  text-decoration: underline;
-  font-size: 1.25rem;
-  }
-</style>

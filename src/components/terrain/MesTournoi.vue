@@ -47,7 +47,87 @@
     </div>
   </div>
 </template>
+<style scoped>
+.tname{
+  color: saddlebrown;
+}
+  .tournois-container {
+    margin-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
+  .tournoi {
+    border: 2px solid red;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: flex-start;
+    width: calc(50% - 25px); /* 50% width with margin */
+  }
+
+  .images-container {
+    margin-right: 20px;
+  }
+
+  .img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+  }
+
+  .tournoi-details {
+    flex-grow: 1;
+    border-left: solid 1px;
+    padding-left: 20px;
+  }
+  select{
+    max-width: 200px;
+  }
+  .info{
+    padding: 10px;
+    margin-left: 150px;
+  }
+  button {
+    background-color: rgb(64, 158, 158);
+    border: none; /* Supprime les bordures */
+    color: #fff; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement interne */
+    font-size: 16px; /* Taille de la police */
+    cursor: pointer; /* Curseur pointeur au survol */
+    transition: background-color 0.3s ease; /* Transition en douceur */
+    border-radius: 5px; /* Coins arrondis */
+    outline: none; /* Supprime la bordure au focus */
+  }
+  .deletbutton{
+    background-color: rgb(203, 39, 39);
+    border: none; /* Supprime les bordures */
+    color: #fff; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement interne */
+    font-size: 16px; /* Taille de la police */
+    cursor: pointer; /* Curseur pointeur au survol */
+    transition: background-color 0.3s ease; /* Transition en douceur */
+    border-radius: 5px; /* Coins arrondis */
+    outline: none; /* Supprime la bordure au focus */
+  }
+
+  /* Style au survol */
+  button:hover {
+    background-color: #00cccc; /* Couleur de fond au survol */
+  }
+
+  /* Style au clic */
+  button:active {
+    background-color: #009999; /* Couleur de fond au clic */
+  }
+  h4{
+    margin-left: 40px;
+  }
+  .tdd{
+    padding-right: 30px;
+  }
+ 
+</style>
 <script>
 import { db,storage,auth } from "../../firebase/firebase"; // Import db from init.js
 import { collection, getDocs, deleteDoc, doc,where,query } from 'firebase/firestore';
@@ -180,84 +260,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-.tname{
-  color: saddlebrown;
-}
-  .tournois-container {
-    margin-left: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .tournoi {
-    border: 2px solid red;
-    margin-bottom: 50px;
-    display: flex;
-    align-items: flex-start;
-    width: calc(50% - 25px); /* 50% width with margin */
-  }
-
-  .images-container {
-    margin-right: 20px;
-  }
-
-  .img {
-    width: 200px;
-    height: 200px;
-    margin-bottom: 10px;
-  }
-
-  .tournoi-details {
-    flex-grow: 1;
-    border-left: solid 1px;
-    padding-left: 20px;
-  }
-  select{
-    max-width: 200px;
-  }
-  .info{
-    padding: 10px;
-    margin-left: 150px;
-  }
-  button {
-    background-color: rgb(64, 158, 158);
-    border: none; /* Supprime les bordures */
-    color: #fff; /* Couleur du texte */
-    padding: 10px 20px; /* Espacement interne */
-    font-size: 16px; /* Taille de la police */
-    cursor: pointer; /* Curseur pointeur au survol */
-    transition: background-color 0.3s ease; /* Transition en douceur */
-    border-radius: 5px; /* Coins arrondis */
-    outline: none; /* Supprime la bordure au focus */
-  }
-  .deletbutton{
-    background-color: rgb(203, 39, 39);
-    border: none; /* Supprime les bordures */
-    color: #fff; /* Couleur du texte */
-    padding: 10px 20px; /* Espacement interne */
-    font-size: 16px; /* Taille de la police */
-    cursor: pointer; /* Curseur pointeur au survol */
-    transition: background-color 0.3s ease; /* Transition en douceur */
-    border-radius: 5px; /* Coins arrondis */
-    outline: none; /* Supprime la bordure au focus */
-  }
-
-  /* Style au survol */
-  button:hover {
-    background-color: #00cccc; /* Couleur de fond au survol */
-  }
-
-  /* Style au clic */
-  button:active {
-    background-color: #009999; /* Couleur de fond au clic */
-  }
-  h4{
-    margin-left: 40px;
-  }
-  .tdd{
-    padding-right: 30px;
-  }
- 
-</style>

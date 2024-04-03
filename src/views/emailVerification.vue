@@ -21,7 +21,11 @@
     </div>
   </div>
 </template>
-
+<style scoped>
+.container {
+  margin-top: 50px;
+}
+</style>
 <script>
 import { auth} from "../firebase/firebase";
 import {sendEmailVerification,signInWithEmailAndPassword } from 'firebase/auth';
@@ -88,8 +92,3 @@ export default{
   }
 }
 </script>
-<style scoped>
-.container {
-  margin-top: 50px;
-}
-</style>

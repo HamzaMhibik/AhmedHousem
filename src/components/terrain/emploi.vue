@@ -30,6 +30,105 @@
     </table>
   </div>
 </template>
+<style scoped>
+.reserve {
+  background-color: rgb(76, 250, 76); /* Couleur pour l'état réservé */
+}
+
+.vide {
+  background-color: rgb(250, 250, 253); /* Couleur pour l'état vide */
+}
+
+.non-disponible {
+  background-color: rgb(255, 0, 0); /* Couleur pour l'état non disponible */
+}
+  /* Style pour le conteneur principal */
+  .emploi-du-temps-container {
+    font-family: Arial, sans-serif;
+  }
+
+  /* Style pour le titre */
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  /* Style pour la table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  th, td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 10px;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  /* Style pour les cellules contenant le planning */
+  .time-slot-cell {
+    position: relative;
+  }
+
+  .time-slot-cell button {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .time-slot-cell button:hover {
+    background-color: #c82333;
+  }
+
+  /* Style pour le message lorsque aucune donnée d'emploi du temps est disponible */
+  .no-data-message {
+    text-align: center;
+    font-style: italic;
+    color: #999;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+
+  /* Style pour le texte à l'intérieur du bouton */
+  button span {
+    vertical-align: middle;
+  }
+  .ptab{
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid black;
+  }
+</style>
+
 
 <script>
 import { db,auth } from "../../firebase/firebase";
@@ -382,103 +481,4 @@ export default {
 
 
 
-
-<style scoped>
-.reserve {
-  background-color: rgb(76, 250, 76); /* Couleur pour l'état réservé */
-}
-
-.vide {
-  background-color: rgb(250, 250, 253); /* Couleur pour l'état vide */
-}
-
-.non-disponible {
-  background-color: rgb(255, 0, 0); /* Couleur pour l'état non disponible */
-}
-  /* Style pour le conteneur principal */
-  .emploi-du-temps-container {
-    font-family: Arial, sans-serif;
-  }
-
-  /* Style pour le titre */
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-  }
-
-  /* Style pour la table */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-
-  th, td {
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 10px;
-  }
-
-  th {
-    background-color: #f2f2f2;
-  }
-
-  /* Style pour les cellules contenant le planning */
-  .time-slot-cell {
-    position: relative;
-  }
-
-  .time-slot-cell button {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-
-  .time-slot-cell button:hover {
-    background-color: #c82333;
-  }
-
-  /* Style pour le message lorsque aucune donnée d'emploi du temps est disponible */
-  .no-data-message {
-    text-align: center;
-    font-style: italic;
-    color: #999;
-  }
-  button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  button:hover {
-    background-color: #0056b3;
-  }
-
-  button:disabled {
-    background-color: #6c757d;
-    cursor: not-allowed;
-  }
-
-  /* Style pour le texte à l'intérieur du bouton */
-  button span {
-    vertical-align: middle;
-  }
-  .ptab{
-    cursor: pointer;
-    padding: 10px;
-    border: 1px solid black;
-  }
-</style>
 

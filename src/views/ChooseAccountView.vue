@@ -40,22 +40,7 @@
     </div>
   </div>
 </template>
-  <script>
-  export default {
-    methods: {
-      creeProprietaire() {
-        this.$router.push({ path: '/account', query: { type: 'proprietaire' }});
-      },
-      creeEquipe() {
-        this.$router.push({ path: '/account', query: { type: 'equipe' }});
-      },
-      creeJoueur() {
-        this.$router.push({ path: '/account', query: { type: 'joueur' }});
-      }
-    }
-  }
-  </script>
-  <style  scoped>
+<style  scoped>
       header {
         background-color: #333;
         color: #fff;
@@ -106,3 +91,19 @@
   gap: 20px; /* Espace entre les colonnes */
 }
       </style>
+  <script>
+  export default {
+    methods: {
+      creeProprietaire() {
+        this.$router.push({ path: '/account', query: { type: 'proprietaire' }});
+      },
+      creeEquipe() {
+        this.$router.push({ path: '/account', query: { type: 'equipe' }});
+      },
+      creeJoueur() {
+        this.$router.push({ path: '/account', query: { type: 'joueur' }});
+      }
+    }
+  }
+  </script>
+  

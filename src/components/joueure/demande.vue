@@ -40,7 +40,57 @@
     </ul>
   </div>
 </template>
+<style scoped>
+.demandes-recrutement {  
+  max-width: 600px;
+  margin: 0 auto;
+}
 
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.demande-item {
+  background-color: #9b9898;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+.filter-nav {
+  border: 2px solid black;
+  margin-top: 109px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px; /* Largeur du filtre */
+  height: 100%; /* Hauteur pour remplir l'écran */
+  background-color: #bdb2b2; /* Couleur de fond */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre */
+  padding: 20px; /* Espacement intérieur */
+  z-index: 100; /* Assurez-vous qu'il est au-dessus du contenu */
+}
+ul{
+  margin-left: 110px;
+  width: 600px;
+}
+  </style>
 <script>
 import { db } from "../../firebase/firebase";
 import { auth } from "../../firebase/firebase";
@@ -195,54 +245,3 @@ export default {
 
 </script>
  
-<style scoped>
-.demandes-recrutement {  
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-.demande-item {
-  background-color: #9b9898;
-  padding: 20px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.label {
-  font-weight: bold;
-}
-
-img {
-  display: block;
-  margin: 0 auto;
-  max-width: 200px;
-  margin-bottom: 10px;
-}
-.filter-nav {
-  border: 2px solid black;
-  margin-top: 109px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200px; /* Largeur du filtre */
-  height: 100%; /* Hauteur pour remplir l'écran */
-  background-color: #bdb2b2; /* Couleur de fond */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre */
-  padding: 20px; /* Espacement intérieur */
-  z-index: 100; /* Assurez-vous qu'il est au-dessus du contenu */
-}
-ul{
-  margin-left: 110px;
-  width: 600px;
-}
-  </style>

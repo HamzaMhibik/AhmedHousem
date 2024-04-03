@@ -38,6 +38,104 @@
       </ul>
     </div>
   </template>
+   <style scoped>
+   .link {
+       font-size: 1.5rem;
+       color: #030303; /* Couleur du lien */
+       text-decoration: none; /* Supprimer le soulignement */
+       margin-right: 10px; /* Marge à droite pour l'espace entre les liens */
+       border: 2px solid black;
+       padding: 10px;
+       background-color: cornflowerblue;
+     }
+ 
+ .link:hover {
+   text-decoration: underline; /* Soulignement au survol */
+ }
+   .acceptation{
+     font-size: 1.5rem;
+   }
+   .container {
+   max-width: 800px;
+   margin: 0 auto;
+   }
+   
+   .title {
+   text-align: center;
+   margin-bottom: 30px;
+   }
+   
+   .defi-list {
+   list-style: none;
+   padding: 0;
+   }
+   
+   .defi-item {
+   background-color: #bfbcbc;
+   border-radius: 10px;
+   padding: 20px;
+   margin-bottom: 20px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   }
+   
+   .defi-header {
+   margin-bottom: 10px;
+   }
+   
+   .equipe-name {
+   font-size: 20px;
+   margin: 0;
+   }
+   
+   .match-details {
+     font-size: 1.25rem;
+   color: #555;
+   margin: 5px 0 0;
+   }
+   
+   .message {
+   margin: 0 0 10px;
+   }
+   
+   .etat {
+   margin: 0;
+   }
+   
+   .defi-actions {
+     display: flex;
+     justify-content: center; /* Centrer horizontalement */
+   }
+   
+   .btn {
+   background-color: #f30808;
+   padding: 10px 20px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+   }
+   .refuse{
+   background-color: #0872f3;
+   padding: 10px 20px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+   margin-left: 10px;
+   }
+   .accepte{
+   background-color: #08f320;
+   padding: 10px 20px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+   }
+   .defis{
+   margin-top: 30px;
+   padding: 20px;
+ }
+   </style>
   <script>
   import { db,auth } from "../../../firebase/firebase";
   import { query, collection, where, getDocs, doc, updateDoc,deleteDoc} from 'firebase/firestore';
@@ -193,101 +291,4 @@
     }
   }
   </script>
-  <style scoped>
-  .link {
-      font-size: 1.5rem;
-      color: #030303; /* Couleur du lien */
-      text-decoration: none; /* Supprimer le soulignement */
-      margin-right: 10px; /* Marge à droite pour l'espace entre les liens */
-      border: 2px solid black;
-      padding: 10px;
-      background-color: cornflowerblue;
-    }
-
-.link:hover {
-  text-decoration: underline; /* Soulignement au survol */
-}
-  .acceptation{
-    font-size: 1.5rem;
-  }
-  .container {
-  max-width: 800px;
-  margin: 0 auto;
-  }
-  
-  .title {
-  text-align: center;
-  margin-bottom: 30px;
-  }
-  
-  .defi-list {
-  list-style: none;
-  padding: 0;
-  }
-  
-  .defi-item {
-  background-color: #bfbcbc;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .defi-header {
-  margin-bottom: 10px;
-  }
-  
-  .equipe-name {
-  font-size: 20px;
-  margin: 0;
-  }
-  
-  .match-details {
-    font-size: 1.25rem;
-  color: #555;
-  margin: 5px 0 0;
-  }
-  
-  .message {
-  margin: 0 0 10px;
-  }
-  
-  .etat {
-  margin: 0;
-  }
-  
-  .defi-actions {
-    display: flex;
-    justify-content: center; /* Centrer horizontalement */
-  }
-  
-  .btn {
-  background-color: #f30808;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  }
-  .refuse{
-  background-color: #0872f3;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-left: 10px;
-  }
-  .accepte{
-  background-color: #08f320;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  }
-  .defis{
-  margin-top: 30px;
-  padding: 20px;
-}
-  </style>
+ 

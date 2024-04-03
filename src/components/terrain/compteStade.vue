@@ -38,6 +38,115 @@
   </div>
 </template>
 
+<style  scoped>
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.images-container, .user-info-container {
+  flex: 1;
+  padding: 20px;
+}
+
+.images-container {
+  border-right: 1px solid #ccc;
+}
+
+h2 {
+  margin-bottom: 15px;
+}
+
+
+
+.delete-button {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.no-images-message {
+  margin-top: 20px;
+  font-style: italic;
+}
+
+/* Stylisation générale du formulaire */
+.user-info-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-info-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.user-info-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.user-info-container input[type="text"],
+.user-info-container input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.user-info-container input[type="text"]:focus,
+.user-info-container input[type="email"]:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.user-info-container button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.user-info-container button:hover {
+  background-color: #0056b3;
+}
+.images-container {
+  border-right: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+}
+
+.image-item {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column; /* Ajouter cette ligne */
+}
+
+.image-item img {
+  width: 250px;
+  height: auto;
+  margin-bottom: 15px; /* Ajouter cette ligne */
+}
+
+</style>
 <script>
 import { db,storage,auth } from "../../firebase/firebase";
 import { ref, listAll, getDownloadURL, deleteObject, uploadBytes } from "firebase/storage";
@@ -170,112 +279,3 @@ export default {
 }
 </script>
 
-<style  scoped>
-.container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.images-container, .user-info-container {
-  flex: 1;
-  padding: 20px;
-}
-
-.images-container {
-  border-right: 1px solid #ccc;
-}
-
-h2 {
-  margin-bottom: 15px;
-}
-
-
-
-.delete-button {
-  background-color: #f44336;
-  color: #fff;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.delete-button:hover {
-  background-color: #d32f2f;
-}
-
-.no-images-message {
-  margin-top: 20px;
-  font-style: italic;
-}
-
-/* Stylisation générale du formulaire */
-.user-info-container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.user-info-container h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-.user-info-container label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.user-info-container input[type="text"],
-.user-info-container input[type="email"] {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.user-info-container input[type="text"]:focus,
-.user-info-container input[type="email"]:focus {
-  outline: none;
-  border-color: #007bff;
-}
-
-.user-info-container button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.user-info-container button:hover {
-  background-color: #0056b3;
-}
-.images-container {
-  border-right: 1px solid #ccc;
-  display: flex;
-  flex-direction: column;
-}
-
-.image-item {
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  flex-direction: column; /* Ajouter cette ligne */
-}
-
-.image-item img {
-  width: 250px;
-  height: auto;
-  margin-bottom: 15px; /* Ajouter cette ligne */
-}
-
-</style>

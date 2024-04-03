@@ -139,6 +139,149 @@
     </div>
   </template>
   
+  <style scoped>
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  td{
+    width: 50px;
+    height: 50px;
+  }
+  .stadium-info,
+  .schedule,
+  .comment-section {
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .info p {
+    margin: 5px 0;
+  }
+  
+  .schedule table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .schedule th,
+  .schedule td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  .time-slot {
+    background-color: #eeeef1;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0;
+  }
+  
+  .time-slot:hover {
+    background-color: #ddd;
+  }
+  
+  button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .image-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .image-item {
+    flex: 0 0 30%; /* Pour que chaque image occupe 30% de la largeur de son conteneur */
+    margin-bottom: 20px;
+  }
+  
+  .image-item img {
+    width: 100%;
+    height: auto;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .comment-section textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 1rem;
+  }
+  
+  .comments-container {
+    margin-top: 20px;
+  }
+  
+  .comment {
+    background-color: #f4f4f4;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .comment p {
+    margin: 0;
+  }
+  
+  .comment-email {
+    font-style: italic;
+    color: #666;
+  }
+  p,.rating{
+    border: 1px solid black;
+  }
+  select{
+    max-width: 100px;
+  }
+  .noteequipe{
+    font-style: italic;
+    font-size: 1.25rem;
+    color: brown;
+  }
+  select{
+    width: 200px;
+  }
+  .reserved-by-user {
+    background-color: green; /* ou toute autre couleur que vous préférez */
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    padding: 10px
+  }
+  
+  .reserved-by-others {
+    background-color: red; /* ou toute autre couleur que vous préférez */
+    font-size: 1.1rem;
+    width: 100%;
+    height: 100%;
+    padding: 10px
+  }
+  .empty-slot {
+    background-color: rgb(255, 255, 255);
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    padding: 10px
+  }
+  </style>
+  
+  <!-- Email du stade manquant. -->
+
   <script>
   import { db,storage,auth } from "../../firebase/firebase";
   import { collection, getDocs, query, where, updateDoc,addDoc,deleteDoc,doc } from 'firebase/firestore';
@@ -597,145 +740,4 @@ initializeScheduleDay() {
   }
   </script>
   
-  <style scoped>
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-td{
-  width: 50px;
-  height: 50px;
-}
-.stadium-info,
-.schedule,
-.comment-section {
-  margin-bottom: 20px;
-}
-
-h2 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
-}
-
-.info p {
-  margin: 5px 0;
-}
-
-.schedule table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.schedule th,
-.schedule td {
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #ddd;
-}
-
-.time-slot {
-  background-color: #eeeef1;
-  cursor: pointer;
-  padding: 10px;
-  margin: 0;
-}
-
-.time-slot:hover {
-  background-color: #ddd;
-}
-
-button {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.image-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.image-item {
-  flex: 0 0 30%; /* Pour que chaque image occupe 30% de la largeur de son conteneur */
-  margin-bottom: 20px;
-}
-
-.image-item img {
-  width: 100%;
-  height: auto;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.comment-section textarea {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 8px;
-  font-size: 1rem;
-}
-
-.comments-container {
-  margin-top: 20px;
-}
-
-.comment {
-  background-color: #f4f4f4;
-  border-radius: 4px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.comment p {
-  margin: 0;
-}
-
-.comment-email {
-  font-style: italic;
-  color: #666;
-}
-p,.rating{
-  border: 1px solid black;
-}
-select{
-  max-width: 100px;
-}
-.noteequipe{
-  font-style: italic;
-  font-size: 1.25rem;
-  color: brown;
-}
-select{
-  width: 200px;
-}
-.reserved-by-user {
-  background-color: green; /* ou toute autre couleur que vous préférez */
-  font-size: 1.1rem;
-  cursor: pointer;
-  width: 100%;
-  height: 100%;
-  padding: 10px
-}
-
-.reserved-by-others {
-  background-color: red; /* ou toute autre couleur que vous préférez */
-  font-size: 1.1rem;
-  width: 100%;
-  height: 100%;
-  padding: 10px
-}
-.empty-slot {
-  background-color: rgb(255, 255, 255);
-  font-size: 1.1rem;
-  cursor: pointer;
-  width: 100%;
-  height: 100%;
-  padding: 10px
-}
-</style>
-
-<!-- Email du stade manquant. -->
+ 

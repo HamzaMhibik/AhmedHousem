@@ -43,101 +43,7 @@
 </template>
 
 
-
-
-  
-  <script>
-  import { db, storage } from "../firebase/firebase";
-  import { collection, getDocs, query, where } from 'firebase/firestore';
-  import { ref, getDownloadURL } from "firebase/storage";
-  import Swal from "sweetalert2";
-
-  
-  export default {
-    name: 'ListeEquipes',
-    data() {
-      return {
-        equipes: [],
-        villes: [], // Liste des villes disponibles
-        selectedVille: '',
-        searchQuery: '', 
-        user: null,
-        unsubscribe: null,
-        usertype:null
-      }
-    },
-    async created() {
-      try {
-        const equipeCollection = collection(db, 'equipes');
-        const equipeSnapshot = await getDocs(equipeCollection);
-  
-        const equipes = [];
-        const villes = new Set(); // Utiliser un ensemble pour éviter les doublons de villes
-        for (const doc of equipeSnapshot.docs) {
-          const equipeData = doc.data();
-          const logoUrl = await this.getLogoUrl(equipeData.nomEquipe);
-          equipes.push({ id: doc.id, ...equipeData, logoUrl });
-          villes.add(equipeData.ville); // Ajouter la ville à l'ensemble
-        }
-  
-        this.equipes = equipes;
-        this.villes = Array.from(villes); // Convertir l'ensemble en tableau
-      } catch (error) {
-        console.error("Erreur lors de la récupération des équipes : ", error);
-      }
-    },
-    computed: {
-      userDetails() {
-        return this.$store.state.userDetails;
-      },
-      filteredEquipes() {
-      // Filtrer les équipes en fonction de la ville sélectionnée et de la requête de recherche
-      let filtered = this.equipes;
-
-      if (this.selectedVille !== '') {
-        filtered = filtered.filter(equipe => equipe.ville === this.selectedVille);
-      }
-
-      if (this.searchQuery.trim() !== '') {
-        const query = this.searchQuery.trim().toLowerCase();
-        filtered = filtered.filter(equipe => equipe.nomEquipe.toLowerCase().includes(query));
-      }
-
-      return filtered;
-    }
-    },
-    async mounted(){
-      await this.$store.dispatch('fetchUserDetails');
-      this.usertype = this.userDetails?.photoURL ?? '';
-    },
-    methods: {
-      async getLogoUrl(nom) {
-        const logoRef = ref(storage, `logos/${nom}/`);
-        try {
-          return await getDownloadURL(logoRef);
-        } catch (error) {
-          console.error("Erreur lors de la récupération du logo : ", error);
-          return ''; // Retourner une URL vide en cas d'erreur
-        }
-      },
-      async defier(equipe) {
-        Swal.fire({
-          title: `Defier ${equipe.nomEquipe} ?` ,
-          showDenyButton: false,
-          showCancelButton: true,
-          confirmButtonText: "Defier",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            this.$router.push({ path: 'defierEquipe', query: { ville:equipe.ville , nomEquipe: equipe.nomEquipe } });
-          } else if (result.isDenied) {
-          }
-        });
-      }
-    }
-  }
-  </script>
-  
-  <style scoped>
+<style scoped>
  
 .filter-nav {
   border: 2px solid black;
@@ -265,3 +171,97 @@ option {
   width: 170px;
 }
 </style>
+
+  
+  <script>
+  import { db, storage } from "../firebase/firebase";
+  import { collection, getDocs, query, where } from 'firebase/firestore';
+  import { ref, getDownloadURL } from "firebase/storage";
+  import Swal from "sweetalert2";
+
+  
+  export default {
+    name: 'ListeEquipes',
+    data() {
+      return {
+        equipes: [],
+        villes: [], // Liste des villes disponibles
+        selectedVille: '',
+        searchQuery: '', 
+        user: null,
+        unsubscribe: null,
+        usertype:null
+      }
+    },
+    async created() {
+      try {
+        const equipeCollection = collection(db, 'equipes');
+        const equipeSnapshot = await getDocs(equipeCollection);
+  
+        const equipes = [];
+        const villes = new Set(); // Utiliser un ensemble pour éviter les doublons de villes
+        for (const doc of equipeSnapshot.docs) {
+          const equipeData = doc.data();
+          const logoUrl = await this.getLogoUrl(equipeData.nomEquipe);
+          equipes.push({ id: doc.id, ...equipeData, logoUrl });
+          villes.add(equipeData.ville); // Ajouter la ville à l'ensemble
+        }
+  
+        this.equipes = equipes;
+        this.villes = Array.from(villes); // Convertir l'ensemble en tableau
+      } catch (error) {
+        console.error("Erreur lors de la récupération des équipes : ", error);
+      }
+    },
+    computed: {
+      userDetails() {
+        return this.$store.state.userDetails;
+      },
+      filteredEquipes() {
+      // Filtrer les équipes en fonction de la ville sélectionnée et de la requête de recherche
+      let filtered = this.equipes;
+
+      if (this.selectedVille !== '') {
+        filtered = filtered.filter(equipe => equipe.ville === this.selectedVille);
+      }
+
+      if (this.searchQuery.trim() !== '') {
+        const query = this.searchQuery.trim().toLowerCase();
+        filtered = filtered.filter(equipe => equipe.nomEquipe.toLowerCase().includes(query));
+      }
+
+      return filtered;
+    }
+    },
+    async mounted(){
+      await this.$store.dispatch('fetchUserDetails');
+      this.usertype = this.userDetails?.photoURL ?? '';
+    },
+    methods: {
+      async getLogoUrl(nom) {
+        const logoRef = ref(storage, `logos/${nom}/`);
+        try {
+          return await getDownloadURL(logoRef);
+        } catch (error) {
+          console.error("Erreur lors de la récupération du logo : ", error);
+          return ''; // Retourner une URL vide en cas d'erreur
+        }
+      },
+      async defier(equipe) {
+        Swal.fire({
+          title: `Defier ${equipe.nomEquipe} ?` ,
+          showDenyButton: false,
+          showCancelButton: true,
+          confirmButtonText: "Defier",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.$router.push({ path: 'defierEquipe', query: { ville:equipe.ville , nomEquipe: equipe.nomEquipe } });
+          } else if (result.isDenied) {
+          }
+        });
+      }
+    }
+  }
+  </script>
+  
+  

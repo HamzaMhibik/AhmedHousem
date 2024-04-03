@@ -20,7 +20,6 @@ import Recrutement from '../components/equipe/Recrutement.vue'
 import Reserver from '../components/equipe/reserver.vue'
 import participer from '../components/equipe/participer.vue'
 import mesrecrutement from '../components/equipe/MesRecrutement.vue'
-import defis from '../components/equipe/MesDefies.vue'
 import defierEquipe from '../components/equipe/defis/defierEquipe.vue'
 import defiscree from '../components/equipe/defis/defiscree.vue'
 import defispropose from '../components/equipe/defis/defispropose.vue'
@@ -146,11 +145,6 @@ const routes = [
     name:'mesrecrutement',
     path:'/mesrecrutement',
     component: mesrecrutement
-  },
-  {
-    name:'defies',
-    path:'/defies',
-    component: defis
   },
   {
     name:'defierEquipe',

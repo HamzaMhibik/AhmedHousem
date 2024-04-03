@@ -53,7 +53,77 @@
     </div>
   </div>
 </template>
-  <script>
+<style scoped>
+.title{
+  font-size: 2rem;
+}
+*{
+  font-size: 1.25rem;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+td{
+  padding: 10px;
+}
+.tdd{
+  border-left: solid 1px black;
+
+}
+.logo {
+  max-width: 200px;
+  border-radius: 50%;
+}
+
+.details-container {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.stade {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+.participer-btn {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.nbmax {
+  color: red;
+}
+
+.equipes-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.equipes-column {
+  flex: 1;
+}
+
+.equipes-column ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.equipes-column ul li {
+  margin-bottom: 10px;
+}
+
+
+</style>
+<script>
 import { db, storage,auth } from "../../firebase/firebase";
 import { doc, getDoc,query,collection,where,getDocs,updateDoc } from 'firebase/firestore';
 import { ref, getDownloadURL } from "firebase/storage";
@@ -189,73 +259,3 @@ async participer() {
   }
 }
 </script>
-<style scoped>
-.title{
-  font-size: 2rem;
-}
-*{
-  font-size: 1.25rem;
-}
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-td{
-  padding: 10px;
-}
-.tdd{
-  border-left: solid 1px black;
-
-}
-.logo {
-  max-width: 200px;
-  border-radius: 50%;
-}
-
-.details-container {
-  margin-top: 20px;
-  border: 1px solid #ccc;
-  padding: 20px;
-}
-
-.stade {
-  cursor: pointer;
-  color: blue;
-  text-decoration: underline;
-}
-
-.participer-btn {
-  background-color: green;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.nbmax {
-  color: red;
-}
-
-.equipes-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.equipes-column {
-  flex: 1;
-}
-
-.equipes-column ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.equipes-column ul li {
-  margin-bottom: 10px;
-}
-
-
-</style>

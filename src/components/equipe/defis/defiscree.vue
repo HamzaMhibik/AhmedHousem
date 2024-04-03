@@ -35,102 +35,6 @@
     </div>
     
   </template>
-  <script>
-  import { db,auth } from "../../../firebase/firebase";
-  import { query, collection, where, getDocs, doc, updateDoc,deleteDoc} from 'firebase/firestore';
-  import Swal from 'sweetalert2'
-  
-  export default {
-    data() {
-        return {
-            storedEmail: '',
-            equipe: '',
-            defis: [],
-            week:['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche'],
-            user: null,
-            unsubscribe: null,
-            usertype:null,
-            verifie:null
-
-
-        }
-    },
-    computed: {
-        userDetails() {
-        return this.$store.state.userDetails;
-        },
-    },
-    async mounted() {
-        await this.$store.dispatch('fetchUserDetails');
-        this.storedEmail = this.userDetails?.email ?? '';
-        this.usertype = this.userDetails?.photoURL ?? '';
-        this.verifie = this.userDetails?.emailVerified ?? '';
-
-        this.unsubscribe = auth.onAuthStateChanged(user => {this.user = user;
-          if(this.usertype!=='equipe'){Swal.fire('Cree un compte equipe pour accede a cette page');this.$router.push('/');}
-          if(!this.verifie){Swal.fire('Valider votre email pour accede a cette page');this.$router.push('/vericationemail');}
-
-        });
-        await this.fetchEquipeByEmail(this.storedEmail);
-        await this.fetchDefis(); // Wait for fetchEquipeByEmail to complete before fetching defis
-    },
-    methods: {
-        async fetchEquipeByEmail(storedEmail) {
-            try {
-                const q = query(collection(db, "equipes"), where("email", "==", storedEmail));
-                const querySnapshot = await getDocs(q);
-                querySnapshot.forEach(async doc => {
-                    this.equipe = { ...doc.data(), id: doc.id }; // Ajouter l'ID du document
-                });
-            } catch (error) {
-                console.error("Erreur lors de la récupération d'équipe : ", error);
-            }
-        },
-        async fetchDefis() {
-            try {
-                const q = query(collection(db, "defis"), where("equipe1", "==", this.equipe.nomEquipe));
-                const querySnapshot = await getDocs(q);
-                querySnapshot.forEach(doc => {
-                    this.defis.push({ ...doc.data(), id: doc.id }); // Ajouter l'ID du document
-                });
-            } catch (error) {
-                console.error("Erreur lors de la récupération des défis : ", error);
-            }
-        },
-        async supprimerDefi(defiId) {
-          Swal.fire({
-            title: "annule le defis ?",
-            showDenyButton: true,
-            showCancelButton: false,
-            confirmButtonText: "Oui",
-            denyButtonText: `Non`
-          }).then((result) => {
-            if (result.isConfirmed) {
-              try {
-                const defiRef = doc(db, "defis", defiId);
-                deleteDoc(defiRef); // Supprimer le document
-                // Mettre à jour la liste locale en retirant le défi supprimé
-                this.defis = this.defis.filter(defi => defi.id !== defiId);
-                Swal.fire({
-                  title: "Annulé",
-                  text: "Defi annule!",
-                  icon: "info"
-                });
-            } catch (error) {
-                console.error("Erreur lors de la suppression du défi : ", error);
-            }
-            } else if (result.isDenied) {
-            }
-          });
-            
-        },
-        async defier(){
-            this.$router.push('/defierEquipe')
-        }
-  
-    }
-  }
-  </script>
   <style scoped>
   .link {
       font-size: 1.5rem;
@@ -230,3 +134,100 @@
   padding: 20px;
 }
   </style>
+  <script>
+  import { db,auth } from "../../../firebase/firebase";
+  import { query, collection, where, getDocs, doc, updateDoc,deleteDoc} from 'firebase/firestore';
+  import Swal from 'sweetalert2'
+  
+  export default {
+    data() {
+        return {
+            storedEmail: '',
+            equipe: '',
+            defis: [],
+            week:['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche'],
+            user: null,
+            unsubscribe: null,
+            usertype:null,
+            verifie:null
+
+
+        }
+    },
+    computed: {
+        userDetails() {
+        return this.$store.state.userDetails;
+        },
+    },
+    async mounted() {
+        await this.$store.dispatch('fetchUserDetails');
+        this.storedEmail = this.userDetails?.email ?? '';
+        this.usertype = this.userDetails?.photoURL ?? '';
+        this.verifie = this.userDetails?.emailVerified ?? '';
+
+        this.unsubscribe = auth.onAuthStateChanged(user => {this.user = user;
+          if(this.usertype!=='equipe'){Swal.fire('Cree un compte equipe pour accede a cette page');this.$router.push('/');}
+          if(!this.verifie){Swal.fire('Valider votre email pour accede a cette page');this.$router.push('/vericationemail');}
+
+        });
+        await this.fetchEquipeByEmail(this.storedEmail);
+        await this.fetchDefis(); // Wait for fetchEquipeByEmail to complete before fetching defis
+    },
+    methods: {
+        async fetchEquipeByEmail(storedEmail) {
+            try {
+                const q = query(collection(db, "equipes"), where("email", "==", storedEmail));
+                const querySnapshot = await getDocs(q);
+                querySnapshot.forEach(async doc => {
+                    this.equipe = { ...doc.data(), id: doc.id }; // Ajouter l'ID du document
+                });
+            } catch (error) {
+                console.error("Erreur lors de la récupération d'équipe : ", error);
+            }
+        },
+        async fetchDefis() {
+            try {
+                const q = query(collection(db, "defis"), where("equipe1", "==", this.equipe.nomEquipe));
+                const querySnapshot = await getDocs(q);
+                querySnapshot.forEach(doc => {
+                    this.defis.push({ ...doc.data(), id: doc.id }); // Ajouter l'ID du document
+                });
+            } catch (error) {
+                console.error("Erreur lors de la récupération des défis : ", error);
+            }
+        },
+        async supprimerDefi(defiId) {
+          Swal.fire({
+            title: "annule le defis ?",
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: "Oui",
+            denyButtonText: `Non`
+          }).then((result) => {
+            if (result.isConfirmed) {
+              try {
+                const defiRef = doc(db, "defis", defiId);
+                deleteDoc(defiRef); // Supprimer le document
+                // Mettre à jour la liste locale en retirant le défi supprimé
+                this.defis = this.defis.filter(defi => defi.id !== defiId);
+                Swal.fire({
+                  title: "Annulé",
+                  text: "Defi annule!",
+                  icon: "info"
+                });
+            } catch (error) {
+                console.error("Erreur lors de la suppression du défi : ", error);
+            }
+            } else if (result.isDenied) {
+            }
+          });
+            
+        },
+        async defier(){
+            this.$router.push('/defierEquipe')
+        }
+  
+    }
+  }
+  </script>
+  

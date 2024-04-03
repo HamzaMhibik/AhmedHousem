@@ -57,11 +57,43 @@
           <option value="equipe">Equipe</option>
           <option value="joueur">Joueur</option>
         </select>
+        <router-link to="/create" class="link">S'inscrire</router-link>
       </center>
     </nav>
     <router-view></router-view>
   </header>
 </template>
+<style lang="scss"  scoped>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+nav {
+  border: black solid 2px;
+  padding: 30px;
+  background-color: burlywood;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+.link,button{
+  border: 1px solid blue;
+  padding: 10px;
+  background-color: bisque;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+</style>
+<style>
+@import '~bootstrap/dist/css/bootstrap.min.css';
+</style>
 
 <script>
 import { auth } from "./firebase/firebase";
@@ -153,34 +185,3 @@ export default {
 
 
 
-<style lang="scss"  scoped>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-nav {
-  border: black solid 2px;
-  padding: 30px;
-  background-color: burlywood;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-.link,button{
-  border: 1px solid blue;
-  padding: 10px;
-  background-color: bisque;
-  border-radius: 10px;
-  margin-right: 10px;
-}
-</style>
-<style>
-@import '~bootstrap/dist/css/bootstrap.min.css';
-</style>

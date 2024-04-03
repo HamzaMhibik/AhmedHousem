@@ -36,6 +36,73 @@
   </div>
 </template>
 
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.logo-container {
+  text-align: center;
+}
+
+.file-input {
+  margin-top: 10px;
+}
+
+.form-container {
+  width: 50%;
+}
+
+.input-field {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-button,
+.save-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.add-button:hover,
+.save-button:hover {
+  background-color: #0056b3;
+}
+
+.no-team-message {
+  text-align: center;
+  margin-top: 20px;
+  font-style: italic;
+  color: #dc3545;
+}
+.delete-button {
+  background-color: #ff4444; /* Couleur de fond */
+  color: #fff; /* Couleur du texte */
+  border: none; /* Supprimer la bordure */
+  padding: 8px 12px; /* Ajouter un espacement intérieur */
+  border-radius: 4px; /* Ajouter un arrondi aux coins */
+  cursor: pointer; /* Afficher le curseur de type pointer au survol */
+}
+
+.delete-button:hover {
+  background-color: #cc0000; /* Changer la couleur de fond au survol */
+}
+
+</style>
+
+
 
 <script>
 import { db, storage, auth } from "../../firebase/firebase";
@@ -223,68 +290,3 @@ export default {
 </script>
 
 
-<style scoped>
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 20px;
-}
-
-.logo-container {
-  text-align: center;
-}
-
-.file-input {
-  margin-top: 10px;
-}
-
-.form-container {
-  width: 50%;
-}
-
-.input-field {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.add-button,
-.save-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.add-button:hover,
-.save-button:hover {
-  background-color: #0056b3;
-}
-
-.no-team-message {
-  text-align: center;
-  margin-top: 20px;
-  font-style: italic;
-  color: #dc3545;
-}
-.delete-button {
-  background-color: #ff4444; /* Couleur de fond */
-  color: #fff; /* Couleur du texte */
-  border: none; /* Supprimer la bordure */
-  padding: 8px 12px; /* Ajouter un espacement intérieur */
-  border-radius: 4px; /* Ajouter un arrondi aux coins */
-  cursor: pointer; /* Afficher le curseur de type pointer au survol */
-}
-
-.delete-button:hover {
-  background-color: #cc0000; /* Changer la couleur de fond au survol */
-}
-
-</style>

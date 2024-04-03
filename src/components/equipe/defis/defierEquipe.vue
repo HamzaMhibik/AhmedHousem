@@ -63,6 +63,60 @@
       </form>
     </div>
   </template>
+  <style scoped>
+  .link {
+    font-size: 1.5rem;
+    color: #030303; /* Couleur du lien */
+    text-decoration: none; /* Supprimer le soulignement */
+    margin-right: 10px; /* Marge à droite pour l'espace entre les liens */
+    border: 2px solid black;
+    padding: 10px;
+    background-color: cornflowerblue;
+  }
+  
+  .link:hover {
+    text-decoration: underline; /* Soulignement au survol */
+  }
+      .container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-control,.time {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  .defis{
+    margin-top: 30px;
+    padding: 20px;
+  }
+  select{
+    font-size: 1.1rem;
+  }
+  label{
+    font-size: 1.1rem;
+  
+  }
+      </style>
     <script>
     import { db,auth } from "../../../firebase/firebase";
     import { query,collection,where,getDocs,addDoc } from 'firebase/firestore';
@@ -265,57 +319,3 @@ async fetchStades() {
       }
     
 </script> 
-<style scoped>
-.link {
-  font-size: 1.5rem;
-  color: #030303; /* Couleur du lien */
-  text-decoration: none; /* Supprimer le soulignement */
-  margin-right: 10px; /* Marge à droite pour l'espace entre les liens */
-  border: 2px solid black;
-  padding: 10px;
-  background-color: cornflowerblue;
-}
-
-.link:hover {
-  text-decoration: underline; /* Soulignement au survol */
-}
-    .container {
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-control,.time {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-.defis{
-  margin-top: 30px;
-  padding: 20px;
-}
-select{
-  font-size: 1.1rem;
-}
-label{
-  font-size: 1.1rem;
-
-}
-    </style>

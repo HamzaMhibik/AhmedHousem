@@ -72,6 +72,67 @@
 </center>
 </template>
 
+<style scoped>
+.equipe {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #b8beb9;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+select {
+  width: calc(100% - 10px);
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+legend {
+  font-weight: bold;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+#error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Add more styles as needed */
+</style>
+
 <script>
 import { auth,db, storage } from "../../firebase/firebase"; // Import db and storage from init.js
 import { createUserWithEmailAndPassword,updateProfile,sendEmailVerification,signInWithEmailAndPassword } from 'firebase/auth';
@@ -212,64 +273,5 @@ export default {
 }
 </script>
 
-<style scoped>
-.equipe {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #b8beb9;
-}
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="number"],
-input[type="password"],
-select {
-  width: calc(100% - 10px);
-  margin-bottom: 10px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  box-sizing: border-box;
-}
-
-fieldset {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 15px;
-}
-
-legend {
-  font-weight: bold;
-}
-
-button[type="submit"] {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-#error-message {
-  color: red;
-  margin-top: 10px;
-}
-
-/* Add more styles as needed */
-</style>
 
